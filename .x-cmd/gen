@@ -1,0 +1,14 @@
+# shellcheck shell=dash
+
+(
+    # Section: Arg
+    WORK_DIR="$(x wsroot)"
+    VERSION="${1:-"v3.4.0"}"
+
+    # Section: Main
+    curl -L "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/refs/tags/${VERSION}/bin/scripts/lib/fonts.json" \
+        | x jo .fonts \
+        | x jo '.*'  \
+        | x ja jl2t .folderName  .imagePreviewFont .licenseId .version  .linkPreviewFont .description .isMonospaced \
+        > "${WORK_DIR}/data/nerd-fonts-${VERSION}.tsv"
+)
