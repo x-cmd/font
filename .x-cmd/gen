@@ -7,6 +7,7 @@
 
     # Section: Main
     curl -L "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/refs/tags/${VERSION}/bin/scripts/lib/fonts.json" \
+        | sed 's/ NF/ Nerd Font/g'  \
         | x jo .fonts \
         | x jo '.*'  \
         | x ja jl2t .folderName  .imagePreviewFont .licenseId .version  .linkPreviewFont .description .isMonospaced \
